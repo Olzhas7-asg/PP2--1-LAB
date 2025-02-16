@@ -1,21 +1,21 @@
 #1
-'''
+
 def grams_to_ounces(grams):
     return 28.3495231 * grams
 
 gram = int (input())
-print (grams_to_ounces(gram))'''
+print (grams_to_ounces(gram))
 
 #2
-'''
+
 def fahrenheit_to_celsius(fahrenheit):
     return (5 / 9) * (fahrenheit - 32)
 
 f_value = float(input("Enter Fahrenheit temperature to convert to Celsius: "))
-print(f"{f_value}°F is {fahrenheit_to_celsius(f_value):.2f}°C")'''
+print(f"{f_value}°F is {fahrenheit_to_celsius(f_value):.2f}°C")
 
 #3
-'''
+
 def solve(numheads, numlegs):
     for chickens in range(numheads + 1):
         rabbits = numheads - chickens
@@ -27,10 +27,10 @@ heads = int(input("Enter the number of heads:"))
 legs = int (input ("Enter the number of legs:"))
 chickens, rabbits = solve(heads, legs)
 print(f"Chickens: {chickens}, Rabbits: {rabbits}")
-'''
+
 
 #4
-'''
+
 import math 
 def is_prime(n):
     if n < 2:
@@ -47,9 +47,9 @@ def filter_prime(numbers):
 num_list = list(map(int, input("Enter numbers separated by spaces: ").split()))
 prime_numbers = filter_prime(num_list)
 print("Prime numbers:", prime_numbers)
-'''
+
 #5
-'''
+
 from itertools import permutations
 
 def print_permutations(string):
@@ -58,20 +58,20 @@ def print_permutations(string):
 
 user_string = input("Enter a string to get its permutations: ")
 print_permutations(user_string)
-'''
+
 
 #6
-'''
+
 def reverse_words(sentence):
     return ' '.join(sentence.split()[::-1])
 
 user_sentence = input("Enter a sentence to reverse words: ")
 print("Reversed sentence:", reverse_words(user_sentence))
-'''
+
 
 #7
 
-'''
+
 def has_33(nums):
     for i in range(len(nums) - 1):
         if nums[i] == 3 and nums[i + 1] == 3:
@@ -81,10 +81,10 @@ def has_33(nums):
 nums = list(map(int, input("Enter a list of numbers:  ").split()))
 print("Contains consecutive 3s:", has_33(nums))
 
-'''
+
 #8
 
-'''def spy_game(nums):
+def spy_game(nums):
     code = [0, 0, 7]
     for num in nums:
         if num == code[0]:
@@ -96,18 +96,18 @@ print("Contains consecutive 3s:", has_33(nums))
 
 spy_nums = list(map(int, input("Enter a list of numbers separated by spaces: ").split()))
 print("Contains 007 in order:", spy_game(spy_nums))
-'''
+
 #9
 
-'''import math
+import math
 def sphere_volume(radius):
     return (4/3) * math.pi * radius**3
 
 radius = float(input("Enter the radius of the sphere: "))
 print("Volume of the sphere:", sphere_volume(radius))
-'''
+
 #10
-'''
+
 def unique_elements(lst):
     unique_list = []
     for item in lst:
@@ -118,10 +118,10 @@ def unique_elements(lst):
 
 user_list = list(map(int, input("Enter a list of numbers separated by spaces: ").split()))
 print("List with unique elements:", unique_elements(user_list))
-'''
+
 
 #11
-'''
+
 def is_palindrome(s):
     s = s.replace(" ", "").lower()
     return s == s[::-1]
@@ -132,19 +132,19 @@ if is_palindrome(user_input):
     print("It is a palindrome!")
 else:
     print("It is not a palindrome.")
-'''
+
 #12
-'''
+
 def histogram(lst):
     for num in lst:
         print('*' * num)
 
 user_input = list(map(int, input("Enter a list of numbers separated by spaces: ").split()))
 histogram(user_input)
-'''
+
 
 #13
-'''
+
 import random
 
 def guess_the_number():
@@ -169,7 +169,7 @@ def guess_the_number():
             break
 
 guess_the_number()
-'''
+
 #14
 import random
 import math

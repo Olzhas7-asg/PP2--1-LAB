@@ -1,5 +1,5 @@
 #1
-'''
+
 class MyClass:
     def __init__(self): #constructor
         pass
@@ -14,11 +14,11 @@ class MyClass:
 opt = MyClass()
 
 opt.printString()
- '''
+
 
 #2
 
-'''
+
 class Shape:
     def area(self):
         return 0
@@ -35,17 +35,17 @@ shape = Shape()
 square = Square(10)
 
 print("Shape area:", shape.area())  
-print("Square area:", square.area()) '''
+print("Square area:", square.area()) 
 
 
-'''# Getting input from me
+# Getting input from me
 length = int(input("Enter the length of the square: "))
 square = Square(length)
-square.area()'''
+square.area()
 
 
 #3
-'''
+
 class Shape:
     def area(self):
         return 0
@@ -70,10 +70,10 @@ length = int(input("Enter the length of the rectangle: "))
 width = int(input("Enter the width of the rectangle: "))
 rectangle = Rectangle(length, width)
 print("Rectangle area:", rectangle.area())
-'''
+
 
 #4
-'''import math
+import math
 
 class Shape:
     def area(self):
@@ -118,11 +118,11 @@ length = int(input("Enter the length of the rectangle: "))
 width = int(input("Enter the width of the rectangle: "))
 rectangle = Rectangle(length, width)
 print("Rectangle area:", rectangle.area())
-'''
+
 
 #5
 
-'''class Account:
+class Account:
     def __init__(self, owner, balance=0):
         self.owner = owner
         self.balance = balance
@@ -143,11 +143,11 @@ account = Account("Alice", 200)
 account.deposit(100)
 account.withdraw(50)
 account.withdraw(300) 
-'''
+
 
 #6
 
-'''import math
+import math
 
 class Account:
     def __init__(self, owner, balance=0):
@@ -176,4 +176,4 @@ is_prime = lambda n: n > 1 and all(n % i != 0 for i in range(2, int(math.sqrt(n)
 
 numbers = [2, 3, 4, 5, 10, 13, 17, 20, 23, 29, 30]
 prime_numbers = list(filter(is_prime, numbers))
-print("Prime numbers:", prime_numbers)'''
+print("Prime numbers:", prime_numbers)
