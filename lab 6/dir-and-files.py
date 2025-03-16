@@ -49,7 +49,6 @@ def countLines(s : str):
     return x
 print(countLines(s))
 
-
 '''
 
 '''
