@@ -31,8 +31,11 @@ player_image = pygame.image.load("Player.jpg")
 player_image = pygame.transform.scale(player_image, (50, 100))
 enemy_image = pygame.image.load("enemy.png")
 enemy_image = pygame.transform.scale(enemy_image, (50, 100))
+enemy_image = pygame.transform.rotate(enemy_image, 180)
 coin_image = pygame.image.load("coin.jpg")
 coin_image = pygame.transform.scale(coin_image, (30, 30))
+police_image = pygame.image.load("police3.jpg")
+police_image = pygame.transform.scale(police_image, (60, 120))
 
 # Sounds
 coin_sound = pygame.mixer.Sound("coin-song.mp3")
@@ -48,6 +51,11 @@ car_speed = 5
 enemy_cars = []
 enemy_spawn_timer = 0
 enemy_spawn_interval = 100  # Frames
+
+# Police cars
+police_cars = []
+police_spawn_timer = 0
+police_spawn_interval = 300  # Frames
 
 # Coins
 coins = []
@@ -92,6 +100,10 @@ while running:
         player_pos[0] -= car_speed
     if keys[pygame.K_d] and player_pos[0] < (WIDTH + ROAD_WIDTH) // 2 - 50:
         player_pos[0] += car_speed
+    if keys[pygame.K_w] and player_pos[1] > 0:
+        player_pos[1] -= car_speed
+    if keys[pygame.K_s] and player_pos[1] < HEIGHT - 100:
+        player_pos[1] += car_speed
 
     # Spawn enemy cars
     enemy_spawn_timer += 1
@@ -102,17 +114,32 @@ while running:
         enemy_cars.append([x, y])
         enemy_spawn_timer = 0
 
-    # Move enemy cars
-    for enemy in enemy_cars:
-        enemy[1] += car_speed
-
-    # Check for collisions with enemy cars
+    # Move enemy cars and check for collision
     for enemy in enemy_cars[:]:
+        enemy[1] += car_speed
         if (player_pos[0] < enemy[0] + 50 and player_pos[0] + 50 > enemy[0] and
             player_pos[1] < enemy[1] + 100 and player_pos[1] + 100 > enemy[1]):
             game_over()
         if enemy[1] > HEIGHT:
             enemy_cars.remove(enemy)
+
+    # Spawn police cars
+    police_spawn_timer += 1
+    if police_spawn_timer >= police_spawn_interval:
+        lane = random.choice([-(LANE_WIDTH // 2), LANE_WIDTH // 2])
+        x = WIDTH // 2 + lane
+        y = -120
+        police_cars.append([x, y])
+        police_spawn_timer = 0
+
+    # Move police cars and check for collision
+    for police in police_cars[:]:
+        police[1] += car_speed
+        if (player_pos[0] < police[0] + 60 and player_pos[0] + 50 > police[0] and
+            player_pos[1] < police[1] + 120 and player_pos[1] + 100 > police[1]):
+            game_over()
+        if police[1] > HEIGHT:
+            police_cars.remove(police)
 
     # Spawn coins
     coin_spawn_timer += 1
@@ -120,39 +147,29 @@ while running:
         lane = random.choice([-(LANE_WIDTH // 2), LANE_WIDTH // 2])
         x = WIDTH // 2 + lane
         y = -30
-        weight = random.choice(coin_weights)  # Random weight for the coin
+        weight = random.choice(coin_weights)
         coins.append([x, y, weight])
         coin_spawn_timer = 0
 
-    # Move coins
-    for coin in coins:
-        coin[1] += car_speed
-
-    # Check for coin collection
+    # Move and collect coins
     for coin in coins[:]:
+        coin[1] += car_speed
         if (player_pos[0] < coin[0] + 30 and player_pos[0] + 50 > coin[0] and
             player_pos[1] < coin[1] + 30 and player_pos[1] + 100 > coin[1]):
-            player_coins += coin[2]  # Add coin weight to score
+            player_coins += coin[2]
             coins.remove(coin)
             coin_sound.play()
-            # Increase enemy speed after collecting 10 coins
-            if player_coins % 10 == 0:
-                car_speed += 1
-        if coin[1] > HEIGHT:
+        elif coin[1] > HEIGHT:
             coins.remove(coin)
 
-    # Draw enemy cars
+    # Draw elements
     for enemy in enemy_cars:
         screen.blit(enemy_image, (enemy[0], enemy[1]))
-
-    # Draw coins
+    for police in police_cars:
+        screen.blit(police_image, (police[0], police[1]))
     for coin in coins:
         screen.blit(coin_image, (coin[0], coin[1]))
-
-    # Draw player car
     screen.blit(player_image, player_pos)
-
-    # Display score
     draw_text(f"Coins: {player_coins}", 20, 20)
 
     pygame.display.flip()
