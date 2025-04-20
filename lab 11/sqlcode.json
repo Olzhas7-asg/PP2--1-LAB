@@ -1,0 +1,11 @@
+{
+    "create_table": "CREATE TABLE IF NOT EXISTS phonebook (id SERIAL PRIMARY KEY, name VARCHAR(50), phone VARCHAR(15));",
+    "insert": "INSERT INTO phonebook (name, phone) VALUES (%s, %s);",
+    "updatep": "UPDATE phonebook SET phone = %s WHERE name = %s;",
+    "filter": "SELECT * FROM phonebook WHERE name ILIKE %s OR phone ILIKE %s;",
+    "delete": "DELETE FROM phonebook WHERE name = %s OR phone = %s;",
+    "all": "SELECT * FROM phonebook;",
+    "pagination": "SELECT * FROM phonebook LIMIT %s OFFSET %s;"
+}
+
+  
